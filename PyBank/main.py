@@ -23,7 +23,7 @@ with open(PyBank_csv, 'r') as csvfile:
     for x in csv.reader(csvfile):
         total += int(x[1])
     
-    print("Total: ","$" + str(total))
+    print("Total: ","${:}".format(str(total)))
     
 with open(PyBank_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
@@ -38,13 +38,13 @@ with open(PyBank_csv, 'r') as csvfile:
     for d in range(0,int(NofM)-1):
         diff.append(int(a[int(d)+1])-int(a[int(d)]))
         total_diff += int(a[int(d)+1])-int(a[int(d)])
-    print("Average  Change: ","$"+str(round(float(total_diff/len(diff)),2)))
+    print("Average  Change: ","${:.8}".format(str(total_diff/len(diff))))
     Max_Diff = max(diff)
     Min_Diff = min(diff)
     for c in range (0,int(NofM)-2):
         if diff[c] == Max_Diff:
-            print("Greatest Increase in Profits: ",b[int(c)+1], "("+"$"+str(diff[c])+")")
+            print("Greatest Increase in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])))
         elif diff[c] == Min_Diff:
-            print("Greatest Decrease in Profits: ",b[int(c)+1], "("+"$"+str(diff[c])+")")
+            print("Greatest Decrease in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])))
     
 
