@@ -7,17 +7,18 @@
 
 import os
 import csv
-import sys
-sys.stdout = open('log.txt', 'w')
+
 PyBank_csv = os.path.join("python-challenge","Pybank",'Resources','budget_data.csv')
 
-print("Financial Analysis")
-print("----------------------------")
+f = open("python-challenge/PyBank/Analysis/Analysis.txt", "w")
+
+print("Financial Analysis",file=f)
+print("----------------------------",file=f)
 with open(PyBank_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
     header = next(csv_reader)
     NofM = len(list(csv_reader))
-    print("Total Months: ",NofM)
+    print("Total Months: ",NofM,file=f)
     
 with open(PyBank_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
@@ -26,7 +27,7 @@ with open(PyBank_csv, 'r') as csvfile:
     for x in csv.reader(csvfile):
         total += int(x[1])
     
-    print("Total: ","${:}".format(str(total)))
+    print("Total: ","${:}".format(str(total)),file=f)
     
 with open(PyBank_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
@@ -41,17 +42,16 @@ with open(PyBank_csv, 'r') as csvfile:
     for d in range(0,int(NofM)-1):
         diff.append(int(a[int(d)+1])-int(a[int(d)]))
         total_diff += int(a[int(d)+1])-int(a[int(d)])
-    print("Average  Change: ","${:.8}".format(str(total_diff/len(diff))))
+    print("Average  Change: ","${:.8}".format(str(total_diff/len(diff))),file=f)
     Max_Diff = max(diff)
     Min_Diff = min(diff)
     for c in range (0,int(NofM)-2):
         if diff[c] == Max_Diff:
-            print("Greatest Increase in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])))
+            print("Greatest Increase in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])),file=f)
         elif diff[c] == Min_Diff:
-            print("Greatest Decrease in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])))
+            print("Greatest Decrease in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])),file=f)
     
-# Set variable for output file
-sys.stdout.close()
+
 
 
 
