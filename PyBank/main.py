@@ -7,7 +7,10 @@
 
 import os
 import csv
+import sys
+sys.stdout = open('log.txt', 'w')
 PyBank_csv = os.path.join("python-challenge","Pybank",'Resources','budget_data.csv')
+
 print("Financial Analysis")
 print("----------------------------")
 with open(PyBank_csv, 'r') as csvfile:
@@ -47,4 +50,8 @@ with open(PyBank_csv, 'r') as csvfile:
         elif diff[c] == Min_Diff:
             print("Greatest Decrease in Profits: ",b[int(c)+1], "(${:})".format(str(diff[c])))
     
+# Set variable for output file
+sys.stdout.close()
+
+
 

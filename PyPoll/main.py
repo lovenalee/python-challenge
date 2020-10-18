@@ -6,15 +6,19 @@
 
 import os
 import csv
+
 PyPoll_csv = os.path.join("python-challenge","PyPoll",'Resources','election_data.csv')
-print("Election Results")
-print("-------------------------")
+
+f = open("python-challenge/PyPoll/Analysis/Analysis.txt", "w")
+
+print("Election Results",file=f)
+print("-------------------------",file=f)
 with open(PyPoll_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
     header = next(csv_reader)
     NofV= len(list(csv_reader))
-    print("Total Votes:",NofV)
-print("-------------------------")
+    print("Total Votes:",NofV,file=f)
+print("-------------------------",file=f)
     
 with open(PyPoll_csv, 'r') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
@@ -27,7 +31,8 @@ with open(PyPoll_csv, 'r') as csvfile:
     for x in range(0,NofV):
         if name[x] != name[int(x)-1]:
             percentage[name[x]] = name.count(name[x])/int(NofV)
-            print(name[x],": ","{:.3%}".format(percentage[name[x]]),"({:})".format(name.count(name[x])))
-    print("-------------------------")
-    print("Winner: ",max(percentage,key = percentage.get))
-    print("-------------------------")
+            print(name[x],": ","{:.3%}".format(percentage[name[x]]),"({:})".format(name.count(name[x])),file=f)
+    print("-------------------------",file=f)
+    print("Winner: ",max(percentage,key = percentage.get),file=f)
+    print("-------------------------",file=f)
+
